@@ -49,7 +49,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden xl:flex items-center space-x-8">
             <Link
               href="/"
               className="text-gray-600 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white cursor-pointer relative flex items-center transition-all duration-300 hover:scale-105 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-gray-900 dark:after:bg-white after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform text-shadow-sm"
@@ -90,43 +90,11 @@ export default function Navbar() {
             <SocialMediaLinks />
 
             {/* Multilanguage Language Functionality */}
-            <button
-              // onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center space-x-2 px-4 py-2 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
-            >
-              {/* Added Globe Icon */}
-              <svg
-                className="w-5 h-5 mr-2"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-              </svg>
-              {/* Existing dropdown arrow remains the same */}
-              <svg
-                // className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-                className={`w-4 h-4 transition-transform 'rotate-180' : ''}`}
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
+
             <Link href={"/login"}>
               <Button
                 style={{
                   padding: "0.8rem 1.5rem",
-                  margin: "0.5rem",
                   fontSize: "clamp(0.8rem, 2vw, 1rem)",
                   transition: "all 0.3s ease",
                   transform: "scale(1)",
@@ -147,7 +115,6 @@ export default function Navbar() {
               <Button
                 style={{
                   padding: "0.8rem 1.5rem",
-                  margin: "0.5rem",
                   fontSize: "clamp(0.8rem, 2vw, 1rem)",
                   transition: "all 0.3s ease",
                   transform: "scale(1)",
@@ -167,42 +134,12 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="xl:hidden flex items-center">
             <Sheet>
               <ThemeToggle />
 
               {/* Multilanguage Language Functionality */}
-              <button
-                // onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center space-x-2 px-2 py-2 ml-2 rounded-md bg-gray-200 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
-              >
-                {/* Added Globe Icon */}
-                <svg
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                </svg>
-                {/* Existing dropdown arrow remains the same */}
-                <svg
-                  className={`w-4 h-4 transition-transform 'rotate-180' : ''}`}
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
+
               <SheetTrigger>
                 <span className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-all duration-200 ease-in-out transform shadow-sm border border-transparent">
                   <svg
@@ -224,16 +161,16 @@ export default function Navbar() {
               <SheetContent onOpenAutoFocus={(open) => !open}>
                 <SheetHeader>
                   <SheetTitle className="text-center font-poppins text-2xl font-semibold tracking-tight flex items-center justify-center dark:text-gray-100 light:text-gray-900 mt-[-10px]">
-                  <Image
-                src="/dd1.png"
-                alt="Tech Dossier"
-                width={50}
-                height={50}
-                className="w-[50px] h-[50px] object-contain dark:invert"
-              />
-              <span className="text-2xl font-extrabold font-['Orbitron'] dark:text-gray-100 text-gray-800 hover:text-gray-600 dark:hover:text-gray-300">
-                Dev Dossier
-              </span>
+                    <Image
+                      src="/dd1.png"
+                      alt="Tech Dossier"
+                      width={50}
+                      height={50}
+                      className="w-[50px] h-[50px] object-contain dark:invert"
+                    />
+                    <span className="text-2xl font-extrabold font-['Orbitron'] dark:text-gray-100 text-gray-800 hover:text-gray-600 dark:hover:text-gray-300">
+                      Dev Dossier
+                    </span>
                   </SheetTitle>
 
                   {/* Search Bar */}
@@ -272,7 +209,7 @@ export default function Navbar() {
 
                   <SheetDescription asChild>
                     {/* Mobile Menu */}
-                    <div className="md:hidden">
+                    <div className="xl:hidden">
                       <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <Link
                           href="/"
@@ -366,4 +303,85 @@ export default function Navbar() {
       </div>
     </nav>
   );
+}
+
+// For Desktop Navbar
+{
+  /* <button */
+}
+// onClick={() => setIsOpen(!isOpen)}
+// className="flex items-center space-x-2 px-4 py-2 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
+// >
+{
+  /* Added Globe Icon */
+}
+// <svg
+//   className="w-5 h-5 mr-2"
+//   viewBox="0 0 24 24"
+//   fill="none"
+//   stroke="currentColor"
+//   strokeWidth="2"
+//   strokeLinecap="round"
+//   strokeLinejoin="round"
+// >
+//   <circle cx="12" cy="12" r="10"></circle>
+//   <line x1="2" y1="12" x2="22" y2="12"></line>
+//   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+// </svg>
+{
+  /* Existing dropdown arrow remains the same */
+}
+// <svg
+// className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+//     className={`w-4 h-4 transition-transform 'rotate-180' : ''}`}
+//     fill="none"
+//     strokeLinecap="round"
+//     strokeLinejoin="round"
+//     strokeWidth="2"
+//     viewBox="0 0 24 24"
+//     stroke="currentColor"
+//   >
+//     <path d="M19 9l-7 7-7-7"></path>
+//   </svg>
+// </button>
+
+// For Mobile Menu Bar
+// <button
+// onClick={() => setIsOpen(!isOpen)}
+//   className="flex items-center space-x-2 px-2 py-2 ml-2 rounded-md bg-gray-200 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
+// >
+{
+  /* Added Globe Icon */
+}
+{
+  /* <svg
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg> */
+}
+{
+  /* Existing dropdown arrow remains the same */
+}
+{
+  /* <svg
+                  className={`w-4 h-4 transition-transform 'rotate-180' : ''}`}
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button> */
 }

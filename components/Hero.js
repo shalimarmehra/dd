@@ -81,18 +81,18 @@ const Hero = () => {
               }
             `}</style>
           </h1>
-          <p className="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 font-['Quicksand'] tracking-wide leading-relaxed first-letter:text-3xl first-letter:font-bold first-letter:text-zinc-600 dark:first-letter:text-zinc-100">
+          <p class="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 font-['Quicksand'] tracking-wide leading-relaxed first-letter:text-3xl first-letter:font-bold first-letter:text-zinc-600 dark:first-letter:text-zinc-100 sm:text-base sm:mb-4 text-justify px-7 sm:px-0">
             Stay updated with the latest tech trends, programming tutorials, and
             industry insights. Our blog covers everything from web development
             and AI to cybersecurity and cloud computing, helping developers and
             tech enthusiasts level up their skills.
           </p>
           <Link href="/blogs">
-          <button className="bg-black hover:bg-gray-900 dark:bg-[#E1E1E2] dark:hover:bg-gray-200 text-white dark:text-black px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center gap-2 mx-auto lg:mx-0 text-sm sm:text-base">
-            <FiBook />
-            View Our Blogs
-            <FiArrowRight />
-          </button>
+            <button className="bg-black hover:bg-gray-900 dark:bg-[#E1E1E2] dark:hover:bg-gray-200 text-white dark:text-black px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center gap-2 mx-auto lg:mx-0 text-sm sm:text-base">
+              <FiBook />
+              View Our Blogs
+              <FiArrowRight />
+            </button>
           </Link>
         </motion.div>
 
