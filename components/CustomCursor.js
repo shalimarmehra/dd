@@ -19,14 +19,14 @@ const CustomCursor = () => {
 
   return (
     <div
-      className="custom-cursor fixed pointer-events-none z-50 mix-blend-difference"
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }}
-    >
-      <div className="h-8 w-8 rounded-full bg-white transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out" />
-    </div>
+  className="custom-cursor fixed pointer-events-none z-50 mix-blend-difference hidden sm:block"
+  style={{
+    left: `${position.x}px`,
+    top: `${position.y}px`,
+  }}
+>
+  <div className="h-8 w-8 rounded-full bg-white transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out" />
+</div>
   );
 };
 
