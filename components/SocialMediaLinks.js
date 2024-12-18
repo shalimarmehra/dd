@@ -1,16 +1,16 @@
 // components/SocialMediaLinks.jsx
 export default function SocialMediaLinks() {
   return (
-    <div class="flex items-center justify-center space-x-2 md:space-x-3">
+    <div className="flex items-center justify-center space-x-2 md:space-x-3">
   {/* LinkedIn */}
   <a
     href="https://www.linkedin.com/company/dev-dossier"
     target="_blank"
     rel="noopener noreferrer"
-    class="relative p-1.5 md:p-2 rounded-xl text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all duration-300 hover:scale-110 hover:-rotate-6 group backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-blue-500/20"
+    className="relative p-1.5 md:p-2 rounded-xl text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all duration-300 hover:scale-110 hover:-rotate-6 group backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-blue-500/20"
   >
     <svg
-      class="w-4 h-4 md:w-5 md:h-5 group-hover:animate-bounce"
+      className="w-4 h-4 md:w-5 md:h-5 group-hover:animate-bounce"
       fill="currentColor"
       viewBox="0 0 24 24"
     >
@@ -23,10 +23,10 @@ export default function SocialMediaLinks() {
     href="https://www.instagram.com/devdossier/"
     target="_blank"
     rel="noopener noreferrer"
-    class="relative p-1.5 md:p-2 rounded-xl text-gray-600 hover:text-pink-600 dark:text-gray-300 dark:hover:text-pink-500 hover:bg-pink-100 dark:hover:bg-pink-900/30 transition-all duration-300 hover:scale-110 hover:rotate-6 group backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-pink-500/20"
+    className="relative p-1.5 md:p-2 rounded-xl text-gray-600 hover:text-pink-600 dark:text-gray-300 dark:hover:text-pink-500 hover:bg-pink-100 dark:hover:bg-pink-900/30 transition-all duration-300 hover:scale-110 hover:rotate-6 group backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-pink-500/20"
   >
     <svg
-      class="w-4 h-4 md:w-5 md:h-5 animate-pulse group-hover:animate-none"
+      className="w-4 h-4 md:w-5 md:h-5 animate-pulse group-hover:animate-none"
       fill="currentColor"
       viewBox="0 0 24 24"
     >
@@ -39,10 +39,10 @@ export default function SocialMediaLinks() {
     href="https://x.com/DevDossier"
     target="_blank"
     rel="noopener noreferrer"
-    class="relative p-1.5 md:p-2 rounded-xl text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-all duration-300 hover:scale-110 hover:rotate-6 group backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-gray-500/20"
+    className="relative p-1.5 md:p-2 rounded-xl text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-all duration-300 hover:scale-110 hover:rotate-6 group backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-gray-500/20"
   >
     <svg
-      class="w-4 h-4 md:w-5 md:h-5 group-hover:animate-spin"
+      className="w-4 h-4 md:w-5 md:h-5 group-hover:animate-spin"
       fill="currentColor"
       viewBox="0 0 24 24"
     >
@@ -55,10 +55,10 @@ export default function SocialMediaLinks() {
     href="https://www.youtube.com/@DevDossier"
     target="_blank"
     rel="noopener noreferrer"
-    class="relative p-1.5 md:p-2 rounded-xl text-gray-600 hover:text-re-300 dark:hover:text-red-500 hover:bg-red-100 dark:hover:bg-red-900/30 transition-all duration-300 hover:scale-110 hover:-rotate-6 group backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-red-500/20"
+    className="relative p-1.5 md:p-2 rounded-xl text-gray-600 hover:text-re-300 dark:hover:text-red-500 hover:bg-red-100 dark:hover:bg-red-900/30 transition-all duration-300 hover:scale-110 hover:-rotate-6 group backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-red-500/20"
   >
     <svg
-      class="w-4 h-4 md:w-5 md:h-5 group-hover:animate-pulse"
+      className="w-4 h-4 md:w-5 md:h-5 group-hover:animate-pulse"
       fill="currentColor"
       viewBox="0 0 24 24"
     >

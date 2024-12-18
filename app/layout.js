@@ -6,7 +6,7 @@ import Navbar from "@/components/NavBar";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
-
+import { AuthProvider } from "./auth/AuthContext";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CustomCursor />
         {loading ? (
@@ -48,9 +48,11 @@ export default function RootLayout({ children }) {
           //   disableTransitionOnChange
           // ></ThemeProvider> */}
           <>
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
+            <AuthProvider>
+              <Navbar />
+              <main>{children}</main>
+              <Footer />
+            </AuthProvider>
           </>
         )}
       </body>

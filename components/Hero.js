@@ -81,7 +81,7 @@ const Hero = () => {
               }
             `}</style>
           </h1>
-          <p class="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 font-['Quicksand'] tracking-wide leading-relaxed first-letter:text-3xl first-letter:font-bold first-letter:text-zinc-600 dark:first-letter:text-zinc-100 sm:text-base sm:mb-4 text-justify px-7 sm:px-0">
+          <p className="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 font-['Quicksand'] tracking-wide leading-relaxed first-letter:text-3xl first-letter:font-bold first-letter:text-zinc-600 dark:first-letter:text-zinc-100 sm:text-base sm:mb-4 text-justify px-7 sm:px-0">
             Stay updated with the latest tech trends, programming tutorials, and
             industry insights. Our blog covers everything from web development
             and AI to cybersecurity and cloud computing, helping developers and

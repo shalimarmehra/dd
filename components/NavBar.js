@@ -21,9 +21,11 @@ import { FaServicestack } from "react-icons/fa";
 import { FaInfo } from "react-icons/fa";
 import { GrContact } from "react-icons/gr";
 import { BiSolidRightArrow } from "react-icons/bi";
+import { useAuth } from "@/app/auth/AuthContext";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isLoggedIn, userRole, logout } = useAuth();
 
   return (
     <nav className="bg-background/50 shadow-lg w-full z-50 sticky top-0 p-2 backdrop-blur mb-10">
@@ -37,7 +39,7 @@ export default function Navbar() {
             >
               <Image
                 src="/dd1.png"
-                alt="Tech Dossier"
+                alt="devdossier"
                 width={50}
                 height={50}
                 className="w-[50px] h-[50px] object-contain dark:invert"
@@ -91,45 +93,67 @@ export default function Navbar() {
 
             {/* Multilanguage Language Functionality */}
 
-            <Link href={"/login"}>
-              <Button
-                style={{
-                  padding: "0.8rem 1.5rem",
-                  fontSize: "clamp(0.8rem, 2vw, 1rem)",
-                  transition: "all 0.3s ease",
-                  transform: "scale(1)",
-                  cursor: "pointer",
-                }}
-                onMouseOver={(e) => {
-                  e.target.style.transform = "scale(1.05)";
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.transform = "scale(1)";
-                }}
-              >
-                Login
-              </Button>
-            </Link>
+            {!isLoggedIn ? (
+              <>
+                <Link href={"/login"}>
+                  <Button
+                    style={{
+                      padding: "0.8rem 1.5rem",
+                      fontSize: "clamp(0.8rem, 2vw, 1rem)",
+                      transition: "all 0.3s ease",
+                      transform: "scale(1)",
+                      cursor: "pointer",
+                    }}
+                    onMouseOver={(e) => {
+                      e.target.style.transform = "scale(1.05)";
+                    }}
+                    onMouseOut={(e) => {
+                      e.target.style.transform = "scale(1)";
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Link>
 
-            <Link href={"/signup"}>
-              <Button
-                style={{
-                  padding: "0.8rem 1.5rem",
-                  fontSize: "clamp(0.8rem, 2vw, 1rem)",
-                  transition: "all 0.3s ease",
-                  transform: "scale(1)",
-                  cursor: "pointer",
-                }}
-                onMouseOver={(e) => {
-                  e.target.style.transform = "scale(1.05)";
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.transform = "scale(1)";
-                }}
-              >
-                Signup
-              </Button>
-            </Link>
+                <Link href={"/signup"}>
+                  <Button
+                    style={{
+                      padding: "0.8rem 1.5rem",
+                      fontSize: "clamp(0.8rem, 2vw, 1rem)",
+                      transition: "all 0.3s ease",
+                      transform: "scale(1)",
+                      cursor: "pointer",
+                    }}
+                    onMouseOver={(e) => {
+                      e.target.style.transform = "scale(1.05)";
+                    }}
+                    onMouseOut={(e) => {
+                      e.target.style.transform = "scale(1)";
+                    }}
+                  >
+                    Signup
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <div className="flex items-center">
+                {" "}
+                <button onClick={logout} className="mx-2">
+                  Logout
+                </button>{" "}
+                {userRole === "admin" ? (
+                  <Link href="/adminDashboard">
+                    {" "}
+                    <span className="mx-2">Admin Profile</span>{" "}
+                  </Link>
+                ) : (
+                  <Link href="/dashboard">
+                    {" "}
+                    <span className="mx-2">Profile</span>{" "}
+                  </Link>
+                )}
+              </div>
+            )}
             <ThemeToggle />
           </div>
 
@@ -163,7 +187,7 @@ export default function Navbar() {
                   <SheetTitle className="text-center font-poppins text-2xl font-semibold tracking-tight flex items-center justify-center dark:text-gray-100 light:text-gray-900 mt-[-10px]">
                     <Image
                       src="/dd1.png"
-                      alt="Tech Dossier"
+                      alt="devdossier"
                       width={50}
                       height={50}
                       className="w-[50px] h-[50px] object-contain dark:invert"

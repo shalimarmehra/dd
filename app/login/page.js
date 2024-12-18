@@ -1,45 +1,35 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { MdLogin } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
+import { useAuth } from "../auth/AuthContext";
 
 export default function LoginPage() {
-  const router = useRouter();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { login } = useAuth();
+  const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
-
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        router.push("/dashboard");
+      console.log("Attempting login...");
+      await login(email, password, setError);
+      const userRole = email === "shalimarmehra01@gmail.com" ? "admin" : "user";
+      console.log("Login successful, redirecting...");
+      toast.success("Hey there! You're logged in.");
+      console.log("User logged in status: ", userRole);
+      if (userRole === "admin") {
+        router.push("/adminDashboard");
       } else {
-        setError("Invalid credentials");
+        router.push("/dashboard");
       }
+      console.log("User logged in");
     } catch (err) {
-      setError("An error occurred. Please try again.");
+      setError("Invalid email or password");
     }
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
   };
 
   return (
@@ -60,14 +50,7 @@ export default function LoginPage() {
           have an account yet, you can create one by clicking the button below.
           Happy learning! 🚀
         </p>
-        <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
-          {error && (
-            <div className="rounded-md bg-red-50 dark:bg-red-900 p-3">
-              <div className="text-sm text-red-700 dark:text-red-200">
-                {error}
-              </div>
-            </div>
-          )}
+        <form className="mt-6 space-y-4" onSubmit={handleLogin}>
           <div className="rounded-md shadow-sm space-y-2">
             <div>
               <label htmlFor="email" className="sr-only">
@@ -80,8 +63,8 @@ export default function LoginPage() {
                 required
                 className="appearance-none rounded-md relative block w-full px-4 py-3 border border-black/10 dark:border-white/10 placeholder-gray-500 text-black dark:text-white bg-white/90 dark:bg-black/90 focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-base"
                 placeholder="Email address"
-                value={formData.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
@@ -95,9 +78,14 @@ export default function LoginPage() {
                 required
                 className="appearance-none rounded-md relative block w-full px-4 py-3 border border-black/10 dark:border-white/10 placeholder-gray-500 text-black dark:text-white bg-white/90 dark:bg-black/90 focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-base"
                 placeholder="Password"
-                value={formData.password}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
+              {error && (
+                <p className="bg-red-50 p-2 text-center font-bold text-red-500 text-sm mt-1">
+                  {error}
+                </p>
+              )}
             </div>
           </div>
 
@@ -116,15 +104,6 @@ export default function LoginPage() {
                 Remember me
               </label>
             </div>
-
-            <div className="text-sm">
-              <Link
-                href="/forgot-password"
-                className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
-              >
-                Forgot your password?
-              </Link>
-            </div>
           </div>
 
           <div>
@@ -135,6 +114,7 @@ export default function LoginPage() {
               >
                 Sign in
               </button>
+              <Toaster />
 
               <button
                 type="button"

@@ -1,54 +1,57 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { MdLogin } from "react-icons/md";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { signup } from "../auth/auth";
+import { useRouter } from "next/navigation";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function SignupPage() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState(""); 
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [errors, setErrors] = useState({});
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      return;
+  const validateForm = () => {
+    const newErrors = {};
+    if (!email) {
+  newErrors.email = "Email is required";
+} else if (!/^[a-zA-Z0-9._-]+@gmail\.com$/.test(email)) {
+  const issues = [];
+  if (email.length > 254) issues.push("Email is too long");
+  if (!/^[a-zA-Z0-9._-]+/.test(email)) issues.push("Invalid characters before @");
+  if (!/^[^@]+@[^@]+$/.test(email)) issues.push("Multiple @ symbols found");
+  if (!/@gmail\.com$/.test(email)) issues.push("Only gmail.com domain is allowed");
+  if (/@.*\..{2,}$/.test(email) && !/^.{1,64}@/.test(email)) issues.push("Local part exceeds 64 characters");
+  
+  newErrors.email = issues.length ? issues.join(". ") : "Email format is invalid";
+}
+    if (!password) {
+      newErrors.password = "Password is required";
+    } else if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
     }
-
-    try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        router.push("/dashboard");
-      } else {
-        setError("Signup failed");
-      }
-    } catch (err) {
-      setError("An error occurred. Please try again.");
-    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      try {
+        const response = await signup(email, password);
+        toast.success("Your account has been created successfully!");
+        if (response?.error === 'EMAIL_EXISTS') {
+          setErrors({ email: "This email is already used" });
+        } else {
+          router.push("/login");
+        }
+      } catch (error) {
+        // console.error("Signup error:", error);
+        setErrors({ submit: "This email is already used" });
+      }
+    }
   };
 
   return (
@@ -69,14 +72,7 @@ export default function SignupPage() {
           tracking, and interactive features. Already have an account? Sign in
           below to continue your learning journey.✨
         </p>
-        <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
-          {error && (
-            <div className="rounded-md bg-red-50 dark:bg-red-900 p-3">
-              <div className="text-sm text-red-700 dark:text-red-200">
-                {error}
-              </div>
-            </div>
-          )}
+        <form className="mt-6 space-y-4" onSubmit={handleSignup}>
           <div className="rounded-md shadow-sm space-y-2">
             <div>
               <label htmlFor="email" className="sr-only">
@@ -89,9 +85,12 @@ export default function SignupPage() {
                 required
                 className="appearance-none rounded-md relative block w-full px-4 py-3 border border-black/10 dark:border-white/10 placeholder-gray-500 text-black dark:text-white bg-white/90 dark:bg-black/90 focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-base"
                 placeholder="Email address"
-                value={formData.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
+              {errors.email && (
+                <p className="bg-red-50 p-2 text-center font-bold text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
             </div>
             <div className="relative">
               <label htmlFor="password" className="sr-only">
@@ -104,35 +103,23 @@ export default function SignupPage() {
                 required
                 className="appearance-none rounded-md relative block w-full px-4 py-3 border border-black/10 dark:border-white/10 placeholder-gray-500 text-black dark:text-white bg-white/90 dark:bg-black/90 focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-base"
                 placeholder="Password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="relative">
-              <label htmlFor="confirmPassword" className="sr-only">
-                Confirm Password
-              </label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type={showConfirmPassword ? "text" : "password"}
-                required
-                className="appearance-none rounded-md relative block w-full px-4 py-3 border border-black/10 dark:border-white/10 placeholder-gray-500 text-black dark:text-white bg-white/90 dark:bg-black/90 focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-base"
-                placeholder="Confirm Password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                onClick={() => setShowPassword(!showPassword)}
               >
-                {showConfirmPassword ? (
-                  <EyeOffIcon className="h-5 w-5 text-gray-400" />
+                {showPassword ? (
+                  <AiOutlineEyeInvisible size={20} />
                 ) : (
-                  <EyeIcon className="h-5 w-5 text-gray-400" />
+                  <AiOutlineEye size={20} />
                 )}
               </button>
+              {errors.password && (
+                <p className="bg-red-50 px-2 py-1 text-center font-bold text-red-500 text-sm mt-1">{errors.password}</p>
+              )}
             </div>
           </div>
 
@@ -144,10 +131,14 @@ export default function SignupPage() {
               >
                 Sign up
               </button>
+              <Toaster />
+              {errors.submit && (
+                <p className="bg-red-50 p-2 text-center font-bold text-red-500 text-sm mt-1">{errors.submit}</p>
+              )}
 
               <button
                 type="button"
-                onClick={() => (window.location.href = "/login")}
+                onClick={() => router.push("/login")}
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 mt-2 border border-transparent text-sm font-medium rounded-md text-black bg-white hover:bg-gray-50 dark:text-white dark:bg-black dark:hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-white transition-all duration-200 shadow-md hover:shadow-lg"
               >
                 <svg
